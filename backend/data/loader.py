@@ -60,10 +60,8 @@ def load_dataset_once() -> pd.DataFrame:
 
 
 def get_dataframe() -> pd.DataFrame:
-    """Return the cached, cleaned DataFrame. Raises if not yet loaded."""
+    """Return the cached, cleaned DataFrame. Auto-loads if not yet initialised."""
+    global _df
     if _df is None:
-        raise RuntimeError(
-            "Dataset not loaded. Call load_dataset_once() first "
-            "(this happens automatically at FastAPI startup)."
-        )
+        load_dataset_once()
     return _df
