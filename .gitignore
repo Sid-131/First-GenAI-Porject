@@ -19,6 +19,7 @@ ENV/
 # Environment secrets — NEVER commit
 .env
 *.env
+.streamlit/secrets.toml
 
 # Data files (large, downloaded locally)
 data/zomato_cleaned.csv
