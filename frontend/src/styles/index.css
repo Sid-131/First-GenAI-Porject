@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ── Base ─────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", ui-sans-serif, system-ui;
+  background-color: #0f0f0f;
+  color: #f5f5f5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e23744;
+  border-radius: 4px;
+}
+
+/* ── Form inputs ──────────────────────────────────────────── */
+.form-input {
+  @apply w-full px-4 py-3 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200;
+}
+
+/* ── Animated gradient hero ───────────────────────────────── */
+.hero-gradient {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0b0b 40%, #0f0f0f 100%);
+}
+
+/* ── Shimmer skeleton ─────────────────────────────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #1e1e1e 25%, #2a2a2a 50%, #1e1e1e 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 12px;
+}
+
+/* ── Card hover glow ──────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(226, 55, 68, 0.18);
+  border-color: #e23744;
+}
+
+/* ── Gemini review section fade-in ───────────────────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeSlideUp 0.45s ease both;
+}
+
+/* ── Rating badge colours ─────────────────────────────────── */
+.badge-high {
+  @apply bg-green-600 text-white;
+}
+
+.badge-mid {
+  @apply bg-yellow-500 text-black;
+}
+
+.badge-low {
+  @apply bg-red-600 text-white;
+}

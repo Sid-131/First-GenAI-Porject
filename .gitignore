@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environment
+venv/
+.venv/
+env/
+ENV/
+
+# Environment secrets — NEVER commit
+.env
+*.env
+
+# Data files (large, downloaded locally)
+data/zomato_cleaned.csv
+data/*.csv
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# pytest
+.pytest_cache/
+.cache/
+coverage/
+.coverage
+
+# Frontend
+node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+
+# Build artifacts
+*.log
+npm-debug.log*
