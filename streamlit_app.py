@@ -99,6 +99,8 @@ html, body, .stApp {
     min-height: 52px !important;
     padding: 0 1rem !important;
     cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
 }
 .stSelectbox > div > div:hover {
     border-color: #e23744 !important;
