@@ -111,6 +111,18 @@ html, body, .stApp {
     background-color: #2a2a2e !important;
     border: 1px solid #3a3a3e !important;
     border-radius: 12px !important;
+    position: relative !important;
+}
+.stNumberInput > div > div::before {
+    content: "₹";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
 }
 .stNumberInput input {
     background-color: #2a2a2e !important;
@@ -118,11 +130,13 @@ html, body, .stApp {
     font-size: 0.95rem !important;
     border: none !important;
     min-height: 52px !important;
+    padding-left: 2rem !important;
 }
 .stNumberInput input::placeholder { color: #6b7280 !important; }
 .stNumberInput input:focus { box-shadow: none !important; }
 /* Hide spinner arrows */
 .stNumberInput button { display: none !important; }
+
 
 /* ── Slider ──────────────────────────────────── */
 .stSlider { padding: 0.2rem 0 !important; }
