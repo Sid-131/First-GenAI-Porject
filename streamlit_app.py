@@ -72,13 +72,13 @@ html, body, .stApp {
 .hero-sub .accent { color: #e23744; font-weight: 600; }
 .hero-sub .white  { color: #d1d5db; font-weight: 600; }
 
-/* ── Form card ───────────────────────────────── */
-.form-card {
-    background: #1c1c1e;
-    border: 1px solid #2a2a2a;
-    border-radius: 20px;
-    padding: 1.6rem 1.5rem;
-    margin-bottom: 1.5rem;
+/* ── Form card — target Streamlit's container border wrapper ── */
+[data-testid="stVerticalBlockBorderWrapper"] {
+    background: #1c1c1e !important;
+    border: 1px solid #2a2a2a !important;
+    border-radius: 20px !important;
+    padding: 1.2rem 1.4rem !important;
+    margin-bottom: 1.5rem !important;
 }
 
 /* ── Hide all Streamlit labels (we embed icons in placeholders) */
@@ -321,58 +321,55 @@ CUISINE_OPTIONS = [
     "Mughlai", "Japanese", "Mexican", "Thai", "American", "Bakery",
 ]
 
-st.markdown('<div class="form-card">', unsafe_allow_html=True)
-
-place = st.selectbox(
-    "Location",
-    options=[""] + places,
-    index=0,
-    format_func=lambda x: "📍  Select a location…" if x == "" else f"📍  {x}",
-    label_visibility="collapsed",
-)
-place = place if place else None
-
-cuisine_raw = st.selectbox(
-    "Cuisine",
-    options=CUISINE_OPTIONS,
-    format_func=lambda x: "🍽️  Any cuisine" if x == "" else f"🍽️  {x}",
-    label_visibility="collapsed",
-)
-cuisine = cuisine_raw if cuisine_raw else None
-
-col3, col4 = st.columns(2)
-with col3:
-    max_price_val = st.number_input(
-        "Budget",
-        min_value=0, value=0, step=100,
-        placeholder="₹  Max budget",
+with st.container(border=True):
+    place = st.selectbox(
+        "Location",
+        options=[""] + places,
+        index=0,
+        format_func=lambda x: "📍  Select a location…" if x == "" else f"📍  {x}",
         label_visibility="collapsed",
     )
-    max_price = int(max_price_val) if max_price_val > 0 else None
+    place = place if place else None
 
-with col4:
-    st.markdown(
-        '<div class="slider-label">⭐ Min Rating</div>',
-        unsafe_allow_html=True,
+    cuisine_raw = st.selectbox(
+        "Cuisine",
+        options=CUISINE_OPTIONS,
+        format_func=lambda x: "🍽️  Any cuisine" if x == "" else f"🍽️  {x}",
+        label_visibility="collapsed",
     )
-    min_rating_val = st.slider(
-        "Rating", min_value=0.0, max_value=5.0, value=0.0, step=0.1,
-        format="%.1f", label_visibility="collapsed",
-    )
-    min_rating = float(min_rating_val) if min_rating_val > 0.0 else None
-    if min_rating_val > 0.0:
+    cuisine = cuisine_raw if cuisine_raw else None
+
+    col3, col4 = st.columns(2)
+    with col3:
+        max_price_val = st.number_input(
+            "Budget",
+            min_value=0, value=0, step=100,
+            placeholder="₹  Max budget",
+            label_visibility="collapsed",
+        )
+        max_price = int(max_price_val) if max_price_val > 0 else None
+
+    with col4:
         st.markdown(
-            f'<div class="slider-val">⭐ {min_rating_val:.1f} / 5.0</div>',
+            '<div class="slider-label">⭐ Min Rating</div>',
             unsafe_allow_html=True,
         )
+        min_rating_val = st.slider(
+            "Rating", min_value=0.0, max_value=5.0, value=0.0, step=0.1,
+            format="%.1f", label_visibility="collapsed",
+        )
+        min_rating = float(min_rating_val) if min_rating_val > 0.0 else None
+        if min_rating_val > 0.0:
+            st.markdown(
+                f'<div class="slider-val">⭐ {min_rating_val:.1f} / 5.0</div>',
+                unsafe_allow_html=True,
+            )
 
-search_clicked = st.button(
-    "🔍  Find Restaurants",
-    disabled=(place is None),
-    use_container_width=True,
-)
-
-st.markdown('</div>', unsafe_allow_html=True)  # close .form-card
+    search_clicked = st.button(
+        "🔍  Find Restaurants",
+        disabled=(place is None),
+        use_container_width=True,
+    )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
